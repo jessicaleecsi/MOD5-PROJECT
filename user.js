@@ -11,7 +11,7 @@ async function onSearchChange(event) {
 
 async function renderPosts(userid) {
     
-    const posts = await fetch(`https://whiskyhunter.net/api/distilleries_info/'${userid || id}`)
+    const posts = await fetch(`https://whiskyhunter.net/api/distilleries_info/${userid || id}`)
     const postsData = await posts.json();
 
       postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
@@ -19,11 +19,14 @@ async function renderPosts(userid) {
 
 function postHTML(post) {
 return `<div class="post">
-      <div class="post__title">
-        ${post.title}
+      <div class="post__name">
+        ${post.name}
       </div>
-      <p class="post__body">
-        ${post.body}
+      <p class="post__slug">
+        ${post.slug}
+      </p>
+      <p class="post__country">
+        ${post.country}
       </p>
     </div>`
 }
