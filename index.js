@@ -3,41 +3,33 @@
 
 
 const userListEl = document.querySelector(".user-list");
-const response = await fetch("./whiskyAPI.json");
-const distilleries = await response.json();
+let distilleries = [];
 
 
 async function main() {
    const users = await fetch("./whiskyAPI.json");
     const usersData = await users.json();
-    userListEl.innerHTML = usersData.map((user) => userHTML(user)).join(''); 
-    //X-CSRFTOKEN: Eg25ozPG0eReksDp80AbFpCqrDR8fAJiH4Nd5tDo5rjXn881JYMQz8dZo9p99PmQ//
- }
+
+
+    userListEl.innerHTML = filteredDistilleries
+  .map(distillery => userHTML(distillery))
+  .join("");
+}
 
 main();
 
-function showUserPosts(id) {
-   localStorage.setItem("id", id);
-    window.location.href = `user.html`
-    
-}
 
-function userHTML(user) {
-return `<div class="user-card" onclick="showUserPosts('${user.slug}')">
-                    <div class="user-card__container">
-                        <h3>${user.name}</h3>
-                        <p><b>Slug:</b> ${user.slug}</p>
-                        <p><b>Country:</b> ${user.country}</p>
-                      </div>
-                                        </div>`;
-}
+function renderFilteredDistilleries(event) {
+  const searchValue = event.target.value.toLowerCase();
 
-async function renderFilteredDistilleries(whiskyId) {
-    
-    const filteredDistilleries = distilleries.filter(distillery =>
-  distillery.name.toLowerCase().includes(searchValue) ||
-  distillery.slug.toLowerCase().includes(searchValue) ||
-  distillery.country.toLowerCase().includes(searchValue)
-);
+  const filteredDistilleries = distilleries.filter(distillery =>
+    distillery.name.toLowerCase().includes(searchValue) ||
+    distillery.slug.toLowerCase().includes(searchValue) ||
+    distillery.country.toLowerCase().includes(searchValue)
+  );
+
+  userListEl.innerHTML = filteredDistilleries
+    .map(distillery => userHTML(distillery))
+    .join("");
 }
-renderDistilleries(filteredDistilleries);
+renderFilteredDistilleries(whiskyId);
