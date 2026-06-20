@@ -8,7 +8,7 @@ let distilleries = [];
 
 async function main() {
    const users = await fetch("./whiskyAPI.json");
-const distilleries = await users.json();
+distilleries = await users.json();
 
 userListEl.innerHTML = distilleries
   .map(distillery => userHTML(distillery))
@@ -48,3 +48,17 @@ function userHTML(user) {
   `;
 }
 
+function searchDistilleries() {
+  const searchInput = document.querySelector("#searchInput");
+  const searchValue = searchInput.value.toLowerCase();
+
+  const filteredDistilleries = distilleries.filter(distillery =>
+    distillery.name.toLowerCase().includes(searchValue) ||
+    distillery.slug.toLowerCase().includes(searchValue) ||
+    distillery.country.toLowerCase().includes(searchValue)
+  );
+
+  userListEl.innerHTML = filteredDistilleries
+    .map(distillery => userHTML(distillery))
+    .join("");
+}
