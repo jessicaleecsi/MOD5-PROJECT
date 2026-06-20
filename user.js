@@ -5,30 +5,31 @@ const userId = params.get('userId'); // returns "1"
 
 async function onSearchChange(event) {
     const id = event.target.value;
-    renderPosts(id);
+    renderDistilleries(id);
 
 }
 
-async function renderPosts(userid) {
+async function renderDistilleries(whiskyId) {
     
-    const posts = await fetch(`https://whiskyhunter.net/api/distilleries_info/${userid || id}`)
-    const postsData = await posts.json();
+    const distilleries = await fetch(`https://whiskyhunter.net/api/distilleries_info/${whiskyId || id}`)
+    const distilleries = await fetch("./whiskyAPI.json")
+    const postsData = await distilleries.json();
 
       postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
 }
 
 function postHTML(post) {
-return `<div class="post">
-      <div class="post__name">
-        ${post.name}
+return `<div class="distillery">
+      <div class="distillery__name">
+        ${distillery.name}
       </div>
-      <p class="post__slug">
-        ${post.slug}
+      <p class="distillery__slug">
+        ${distillery.slug}
       </p>
-      <p class="post__country">
-        ${post.country}
+      <p class="distillery__country">
+        ${distillery.country}
       </p>
     </div>`
 }
 
-renderPosts(id);
+renderDistilleries(id);
