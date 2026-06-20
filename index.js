@@ -8,16 +8,14 @@ let distilleries = [];
 
 async function main() {
    const users = await fetch("./whiskyAPI.json");
-    const usersData = await users.json();
+const distilleries = await users.json();
 
-
-    userListEl.innerHTML = filteredDistilleries
+userListEl.innerHTML = distilleries
   .map(distillery => userHTML(distillery))
   .join("");
 }
 
 main();
-
 
 function renderFilteredDistilleries(event) {
   const searchValue = event.target.value.toLowerCase();
@@ -32,4 +30,21 @@ function renderFilteredDistilleries(event) {
     .map(distillery => userHTML(distillery))
     .join("");
 }
-renderFilteredDistilleries(whiskyId);
+
+function showUserPosts(id) {
+  localStorage.setItem("id", id);
+  window.location.href = "user.html";
+}
+
+function userHTML(user) {
+  return `
+    <div class="user-card" onclick="showUserPosts('${user.slug}')">
+      <div class="user-card__container">
+        <h3>${user.name}</h3>
+        <p><b>Slug:</b> ${user.slug}</p>
+        <p><b>Country:</b> ${user.country}</p>
+      </div>
+    </div>
+  `;
+}
+
