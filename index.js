@@ -3,6 +3,9 @@
 
 
 const userListEl = document.querySelector(".user-list");
+const response = await fetch("./whiskyAPI.json");
+const distilleries = await response.json();
+
 
 async function main() {
    const users = await fetch("./whiskyAPI.json");
@@ -20,7 +23,7 @@ function showUserPosts(id) {
 }
 
 function userHTML(user) {
-return `<div class="user-card" onclick="showUserPosts('${user.slug}'>
+return `<div class="user-card" onclick="showUserPosts('${user.slug}')">
                     <div class="user-card__container">
                         <h3>${user.name}</h3>
                         <p><b>Slug:</b> ${user.slug}</p>
@@ -28,3 +31,13 @@ return `<div class="user-card" onclick="showUserPosts('${user.slug}'>
                       </div>
                                         </div>`;
 }
+
+async function renderFilteredDistilleries(whiskyId) {
+    
+    const filteredDistilleries = distilleries.filter(distillery =>
+  distillery.name.toLowerCase().includes(searchValue) ||
+  distillery.slug.toLowerCase().includes(searchValue) ||
+  distillery.country.toLowerCase().includes(searchValue)
+);
+}
+renderDistilleries(filteredDistilleries);

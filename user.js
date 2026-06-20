@@ -11,14 +11,18 @@ async function onSearchChange(event) {
 
 async function renderDistilleries(whiskyId) {
     
-    const distilleries = await fetch(`https://whiskyhunter.net/api/distilleries_info/${whiskyId || id}`)
+
     const distilleries = await fetch("./whiskyAPI.json")
     const postsData = await distilleries.json();
 
-      postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
+      const selectedDistillery = postsData.find(
+  distillery => distillery.slug === id
+);
+
+postListEl.innerHTML = postHTML(selectedDistillery);
 }
 
-function postHTML(post) {
+function postHTML(distillery) {
 return `<div class="distillery">
       <div class="distillery__name">
         ${distillery.name}
