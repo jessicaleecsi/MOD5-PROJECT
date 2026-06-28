@@ -68,5 +68,5 @@ function searchDistilleries() {
       .join("");
 
     spinner.classList.remove("fa-spinner--visible");
-  }, 500);
+  }, 1500);
 }
