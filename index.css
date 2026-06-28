@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 header {
-  background-color: #000;
+  background-color: rgb(174, 143, 216);
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -16,6 +16,16 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+
+.searchButton {
+    font-size: 24px;
+    border-radius: 10px;
+    background-color: #3d2b53;
+    color: rgb(174, 143, 216);
+    z-index: 100;
+    box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5);
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -27,8 +37,6 @@ html {
 
 .fa-spinner--visible {
   display: inline-block;
-  font-size: 24px;
-  margin-left: 12px;
 }
 
 @keyframes spinner {
@@ -46,7 +54,7 @@ h1  {
     margin-bottom: 12px;
     text-align: left;
     line-height: 1;
-    color: rgb(117, 0, 226) !important;
+    color: rgb(174, 143, 216)!important;
     font-family: 'Lato', sans-serif;
 }
 
@@ -77,8 +85,9 @@ p {
 }
 
 .user-card {
-  background-color: #fff;
+  background-color: #3d2b53;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: rgb(174, 143, 216);
   margin: 10px;
   transition: 0.3s;
   cursor: pointer;
@@ -110,8 +119,8 @@ p {
 }
 
 .back-btn {
-  color: #fff;
-  background-color: black;
+  color: rgb(174, 143, 216);
+  background-color: #3d2b53;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
@@ -164,7 +173,7 @@ p {
 }
 
 footer {
-    background-color: #000;
+    background-color: rgb(174, 143, 216);
     color: #fff;
     text-align: center;
     padding: 20px 0;
