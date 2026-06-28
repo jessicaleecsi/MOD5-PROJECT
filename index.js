@@ -48,17 +48,25 @@ function userHTML(user) {
   `;
 }
 
+
 function searchDistilleries() {
+  const spinner = document.querySelector(".fa-spinner");
   const searchInput = document.querySelector("#searchInput");
   const searchValue = searchInput.value.toLowerCase();
 
-  const filteredDistilleries = distilleries.filter(distillery =>
-    distillery.name.toLowerCase().includes(searchValue) ||
-    distillery.slug.toLowerCase().includes(searchValue) ||
-    distillery.country.toLowerCase().includes(searchValue)
-  );
+  spinner.classList.add("fa-spinner--visible");
 
-  userListEl.innerHTML = filteredDistilleries
-    .map(distillery => userHTML(distillery))
-    .join("");
+  setTimeout(() => {
+    const filteredDistilleries = distilleries.filter(distillery =>
+      distillery.name.toLowerCase().includes(searchValue) ||
+      distillery.slug.toLowerCase().includes(searchValue) ||
+      distillery.country.toLowerCase().includes(searchValue)
+    );
+
+    userListEl.innerHTML = filteredDistilleries
+      .map(distillery => userHTML(distillery))
+      .join("");
+
+    spinner.classList.remove("fa-spinner--visible");
+  }, 500);
 }
